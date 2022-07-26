@@ -6,11 +6,16 @@ def deploy_simple_storage():
     simple_storage = SimpleStorage.deploy({"from": account})
     stored_value = simple_storage.retrieve()
     print(stored_value)
-    tx = simple_storage.store(31, {"from": account})
-    tx.wait(1)
-    print(tx)
+    tx1 = simple_storage.store(31, {"from": account})
+    tx1.wait(1)
+    print(tx1)
     updated_stored_value = simple_storage.retrieve()
     print(updated_stored_value)
+    
+    tx2 = simple_storage.addPerson("yavuz", 7, {"from": account})
+    tx2.wait(1)
+    
+    print(simple_storage.retrieveNumberOfPerson("yavuz"))
     
 def get_account():
     if network.show_active() == "development":
